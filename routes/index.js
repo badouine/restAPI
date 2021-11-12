@@ -29,5 +29,16 @@ router.post('/api/user/add', (req, res) => {
     });
 });
 
+// Get User By Id
+router.get('/api/user/:id', (req, res) => {
+    User.findById(req.params.id, (err, data) => {
+        if(!err) {
+            res.send(data);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
 
 module.exports = router;

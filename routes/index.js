@@ -38,6 +38,21 @@ router.get('/api/user/:id', (req, res) => {
             console.log(err);
         }
     });
+});  
+
+
+//  Update user 
+router.put('/api/user/update/:id', (req, res) => {
+    const user = {
+        name: req.body.name,
+        email: req.body.email,
+        number: req.body.number
+    };
+    User.findByIdAndUpdate(req.params.id, { $set:user}, { new:true }, (err, data) => {
+        if(!err) {
+            res.status(200).json({code:200, message: 'User updated successfully', updateUser:data })
+        } else { console.log(err); }
+    });
 });
 
 

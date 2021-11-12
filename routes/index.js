@@ -55,5 +55,17 @@ router.put('/api/user/update/:id', (req, res) => {
     });
 });
 
+// Delete a user
+
+router.delete('/api/user/:id', (req, res) => {
+    User.findByIdAndRemove(req.params.id, (err, data) => {
+        if(!err) {
+            res.status(200).json({ code:200, message: 'User deleted successfully',
+            deleteUser: data
+        });
+        };
+    });
+});
+
 
 module.exports = router;
